@@ -81,39 +81,39 @@ const isFetchSuccess = (payload) => {
 const products = (state = initialState, action) => {
   let newArray = state.data;
   switch (action.type) {
-  case GET_PRODUCTS.REQUEST:
-  case GET_PRODUCTS.SUCCESS:
-  case GET_PRODUCTS.FAILURE:
-    return Object.assign({}, state, action.payload);
-  case ADD_PRODUCT.REQUEST:
-  case ADD_PRODUCT.SUCCESS:
-  case ADD_PRODUCT.FAILURE:
-    if (isFetchSuccess(action.payload)) newArray.push(action.payload.data);
-    return Object.assign({}, state, action.payload, { data: newArray });
-  case EDIT_PRODUCT.REQUEST:
-  case EDIT_PRODUCT.SUCCESS:
-  case EDIT_PRODUCT.FAILURE:
-    if (isFetchSuccess(action.payload)) {
-      newArray = newArray.map(product =>
-        product.id === action.payload.data.id ?
-          { ...action.payload.data } :
-          product
-      );
-    }
-    return Object.assign({}, state, action.payload, { data: newArray });
-  case DELETE_PRODUCT.REQUEST:
-  case DELETE_PRODUCT.SUCCESS:
-  case DELETE_PRODUCT.FAILURE:
-    if (isFetchSuccess(action.payload)) {
-      newArray = newArray.filter(product =>
-        product.id !== action.payload.data.id
-      );
-    }
-    return Object.assign({}, state, action.payload, { data: newArray });
-  case CLEAR_ERROR_STATE:
-    return Object.assign({}, state, action.payload);
-  default:
-    return state;
+    case GET_PRODUCTS.REQUEST:
+    case GET_PRODUCTS.SUCCESS:
+    case GET_PRODUCTS.FAILURE:
+      return Object.assign({}, state, action.payload);
+    case ADD_PRODUCT.REQUEST:
+    case ADD_PRODUCT.SUCCESS:
+    case ADD_PRODUCT.FAILURE:
+      if (isFetchSuccess(action.payload)) newArray.push(action.payload.data);
+      return Object.assign({}, state, action.payload, { data: newArray });
+    case EDIT_PRODUCT.REQUEST:
+    case EDIT_PRODUCT.SUCCESS:
+    case EDIT_PRODUCT.FAILURE:
+      if (isFetchSuccess(action.payload)) {
+        newArray = newArray.map(product =>
+          product.id === action.payload.data.id ?
+            { ...action.payload.data } :
+            product
+        );
+      }
+      return Object.assign({}, state, action.payload, { data: newArray });
+    case DELETE_PRODUCT.REQUEST:
+    case DELETE_PRODUCT.SUCCESS:
+    case DELETE_PRODUCT.FAILURE:
+      if (isFetchSuccess(action.payload)) {
+        newArray = newArray.filter(product =>
+          product.id !== action.payload.data.id
+        );
+      }
+      return Object.assign({}, state, action.payload, { data: newArray });
+    case CLEAR_ERROR_STATE:
+      return Object.assign({}, state, action.payload);
+    default:
+      return state;
   }
 };
 

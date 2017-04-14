@@ -26,16 +26,16 @@ const initialState = {
 
 const activateModal = (state = initialState, action) => {
   switch (action.type) {
-  case SET_MODAL_DISPLAY:
-    return {
-      ...state,
-      modal: action.modalName,
-      itemId: action.itemId
-    };
-  case CLOSE_MODAL:
-    return initialState;
-  default:
-    return state;
+    case SET_MODAL_DISPLAY:
+      return {
+        ...state,
+        modal: action.modalName,
+        itemId: action.itemId
+      };
+    case CLOSE_MODAL:
+      return initialState;
+    default:
+      return state;
   }
 };
 

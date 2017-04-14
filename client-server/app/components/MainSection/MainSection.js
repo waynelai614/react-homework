@@ -86,11 +86,11 @@ class MainSection extends React.Component {
 
   onKeyDown(e) {
     switch (e.keyCode) {
-    case ESCAPE_KEY:
-      this.props.actions.closeModal();
-      break;
-    default:
-      break;
+      case ESCAPE_KEY:
+        this.props.actions.closeModal();
+        break;
+      default:
+        break;
     }
   }
 
