@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import styles from './FadeInImage.css';
 
-class LazyImage extends Component {
+class FadeInImage extends Component {
   constructor(props) {
     super(props);
     this.state = { isLoaded: false };
@@ -37,8 +37,8 @@ class LazyImage extends Component {
   }
 }
 
-LazyImage.propTypes = {
+FadeInImage.propTypes = {
   src: React.PropTypes.string.isRequired
 };
 
-export default LazyImage;
+export default FadeInImage;

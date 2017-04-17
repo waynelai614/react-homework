@@ -6,32 +6,12 @@ import EditModal from '../Modal/EditModal';
 import ComfirmModal from '../Modal/ComfirmModal';
 import ImageModal from '../Modal/ImageModal';
 
+import LoadingSpinner from '../Common/LoadingSpinner';
+import Notification from '../Common/Notification';
+
 import { MODAL } from '../../constants/ModalNames';
 
 const ESCAPE_KEY = 27;
-
-const renderLoader = (isFetching) => {
-  if (!isFetching) return null;
-  return (
-    <div className="loader-background">
-      <div className="loader">Loading...</div>
-    </div>
-  );
-};
-
-const renderNotification = (hasError, error, clearErrorState) => {
-  if (!hasError) return null;
-  return (
-    <div
-      className="notification is-danger has-text-centered"
-      style={{marginBottom: 0}}
-    >
-      <button className="delete" onClick={clearErrorState}></button>
-      <p>Oops! Something went wrong.</p>
-      <p><small>{error}</small></p>
-    </div>
-  );
-};
 
 const renderModals = (modalDisplay, findProductById, actions) => {
   if (!modalDisplay.modal) {
@@ -107,13 +87,17 @@ class MainSection extends React.Component {
     const { addProdcut, clearErrorState } = actions;
     return (
       <div>
-        {renderLoader(isFetching)}
-        {renderNotification(hasError, error, clearErrorState)}
+        <LoadingSpinner isFetching={isFetching} />
+        <Notification
+          hasError={hasError}
+          error={error}
+          clearErrorState={clearErrorState}
+        />
         <section className="hero is-fullheight is-dark is-bold">
-          <div className="hero-body">
+          <div className="hero-body" style={{alignItems: 'flex-start'}}>
             <div className="container">
               <div className="columns is-vcentered">
-                <div className="column is-6 is-offset-3">
+                <div className="column is-8 is-offset-2">
                   <h1 className="title">
                     Product Management System
                   </h1>
