@@ -40,6 +40,15 @@ class ProductForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.product) {
+      this.setState({
+        isEdit: true,
+        fields: nextProps.product
+      });
+    }
+  }
+
   handleChange(propertyName, e) {
     let value = e.target.value;
 
@@ -90,11 +99,9 @@ class ProductForm extends Component {
     if (Object.keys(state.errors).length !== 0) return;
     this.props.updateProdcut(state.fields);
 
-    if (state.isEdit) {
-      this.props.closeModal();
-      return;
-    }
     this.setState({ fields: INIT_FIELDS_STATE });
+    // navigate to index page
+    this.props.history.push('/');
   }
 
   render() {
@@ -204,6 +211,7 @@ class ProductForm extends Component {
 }
 
 ProductForm.propTypes = {
+  history: React.PropTypes.object.isRequired,
   updateProdcut: React.PropTypes.func.isRequired,
   product: React.PropTypes.object,
   closeModal: React.PropTypes.func

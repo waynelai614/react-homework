@@ -28,7 +28,14 @@ const ProductList = (props) => {
           </tr>
         </thead>
         <tbody>
-          {renderProductList(products.data, actions)}
+          {(products.data && products.data.length > 0)
+            ?
+            renderProductList(products.data, actions)
+            :
+            <tr>
+              <td colSpan="7" className="has-text-centered">No records found</td>
+            </tr>
+          }
         </tbody>
       </table>
     </div>

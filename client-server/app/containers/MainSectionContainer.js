@@ -1,5 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import MainSection from '../components/MainSection';
 
@@ -16,4 +17,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({ ...modalActions, ...ProductActions }, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainSection);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainSection));

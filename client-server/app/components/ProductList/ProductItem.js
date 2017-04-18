@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import numeral from 'numeral';
 import FadeInImage from '../Common/FadeInImage';
 import styles from './ProductItem.css';
@@ -24,11 +25,11 @@ const ProductItem = (props) => {
       <td className={styles.vertical_middle}>
         <div className="field is-grouped">
           <p className="control">
-            <a className="button is-info is-outlined" onClick={() => showModal(MODAL.EDIT_MODAL, product.id)}>
+            <Link to={`/edit/${product.id}`} className="button is-info is-outlined">
               <span className="icon">
                 <i className="fa fa-pencil"></i>
               </span>
-            </a>
+            </Link>
           </p>
           <p className="control">
             <a className="button is-danger is-outlined" onClick={() => showModal(MODAL.COMFIRM_MODAL, product.id)}>

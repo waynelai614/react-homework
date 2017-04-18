@@ -1,8 +1,7 @@
 import React from 'react';
-import ProductForm from '../ProductForm';
+import { Link } from 'react-router-dom';
 import ProductList from '../ProductList';
 
-import EditModal from '../Modal/EditModal';
 import ComfirmModal from '../Modal/ComfirmModal';
 import ImageModal from '../Modal/ImageModal';
 
@@ -20,19 +19,13 @@ const renderModals = (modalDisplay, findProductById, actions) => {
   }
   document.documentElement.className = 'is-clipped';
   const { modal, itemId } = modalDisplay;
-  const { editProdcut, deleteProdcut, closeModal} = actions;
+  const { deleteProdcut, closeModal} = actions;
   const product = findProductById(itemId);
   return (
     <section>
       <ImageModal
         isShown={modal === MODAL.IMAGE_MODAL}
         imageUrl={product.imageUrl}
-        closeModal={closeModal}
-      />
-      <EditModal
-        isShown={modal === MODAL.EDIT_MODAL}
-        product={product}
-        editProdcut={editProdcut}
         closeModal={closeModal}
       />
       <ComfirmModal
@@ -83,8 +76,8 @@ class MainSection extends React.Component {
 
   render() {
     const { products, actions, modalDisplay } = this.props;
-    const { data, isFetching, hasError, error } = products;
-    const { addProdcut, clearErrorState } = actions;
+    const { isFetching, hasError, error } = products;
+    const { clearErrorState } = actions;
     return (
       <div>
         <LoadingSpinner isFetching={isFetching} />
@@ -100,18 +93,19 @@ class MainSection extends React.Component {
                 <div className="column is-8 is-offset-2">
                   <h1 className="title">
                     Product Management System
+                    <Link
+                      to="/create"
+                      className="button is-primary is-outlined"
+                      style={{marginLeft: '1.5rem'}}
+                    >
+                      <span className="icon">
+                        <i className="fa fa-plus-circle"></i>
+                      </span>
+                      <span>Add Product</span>
+                    </Link>
                   </h1>
                   <div className="box">
-                    <ProductForm
-                      updateProdcut={addProdcut}
-                    />
-                    {(data && data.length > 0)
-                      &&
-                      <div>
-                        <hr />
-                        <ProductList {...this.props} />
-                      </div>
-                    }
+                    <ProductList {...this.props} />
                   </div>
                 </div>
               </div>
